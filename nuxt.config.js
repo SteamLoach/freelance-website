@@ -1,6 +1,11 @@
+const env = require('dotenv').config()
+
 
 export default {
   mode: 'universal',
+  env: {
+    CONTENT_VERSION: process.env.CONTENT_VERSION,
+  },
   /*
   ** Headers of the page
   */
@@ -9,10 +14,13 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      process.env.CONTENT_VERSION === 'draft' ? 
+      {name: 'robots', content: 'noindex,nofollow'} : {},
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins|Roboto&display=swap'}
     ]
   },
   /*
@@ -23,11 +31,16 @@ export default {
   ** Global CSS
   */
   css: [
+      //'culverin-scss/css-base/base.css',
+    '../steamloach-scss/css-base/base.css',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/utils.js',
+    '~/plugins/particleVisual.js',
+    '~/plugins/components.js',
   ],
   /*
   ** Nuxt.js dev-modules
@@ -41,8 +54,15 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
+    '@nuxtjs/style-resources',
+    ['storyblok-nuxt', 
+      {accessToken: process.env.STORYBLOK_TOKEN,
+       cacheProvider: 'memory'}
+    ],
   ],
+  styleResources: {
+    scss: ['assets/stylesheets/main.scss']
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

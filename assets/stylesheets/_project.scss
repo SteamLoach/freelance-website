@@ -1,0 +1,16 @@
+@mixin content-panel-inner() {
+  max-width: $wide-content-width;
+  @include pad-scale(
+    x,
+    $default: $space-3,
+    $on-tablet: $space-4,
+    $on-laptop: $space-6,
+    $on-desktop: $space-8,
+  );
+  @include pad-scale(
+    y,
+    $default: $space-6,
+    $on-tablet: $space-8,
+  );
+  
+}

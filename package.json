@@ -8,12 +8,15 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "generate-spa": "nuxt generate --spa"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
     "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/dotenv": "^1.4.0"
+    "@nuxtjs/dotenv": "^1.4.0",
+    "culverin-scss": "^1.1.0",
+    "nuxt": "^2.0.0",
+    "storyblok-nuxt": "^1.0.2"
   },
   "devDependencies": {
     "@nuxtjs/style-resources": "^1.0.0",
