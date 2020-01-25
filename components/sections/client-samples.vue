@@ -54,7 +54,7 @@ export default {
   }
   
   .client-sample {
-    max-width: 400px;
+    max-width: 325px;
     padding: $space-6;
     @include margin-scale(
       bottom,
@@ -109,6 +109,7 @@ export default {
       &:hover {
         color: $offset-text-color;
         background: $brand-base;
+        cursor: pointer;
         .svg-icon {
           fill: $offset-text-color;
           left: 5px;

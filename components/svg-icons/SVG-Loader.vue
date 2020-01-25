@@ -7,6 +7,9 @@
 
 <script>
 
+//Header
+import responsiveDesign from './page-header/responsive-design.vue'
+  
 //Selling Points
 import editing from './selling-points/editing.vue'
 import money from './selling-points/money.vue'
@@ -39,6 +42,8 @@ export default {
   
   components: {
     
+    //Header
+    responsiveDesign,
     //Selling Points
     editing,
     money,

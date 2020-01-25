@@ -8,7 +8,7 @@
       
       <div class="selling-point-content">
         <h4> 0{{order}}. </h4>
-        <h2> {{content.title}} </h2>
+        <h3> {{content.title}} </h3>
         <div v-html="richText"
              class="rich-text"></div>
         <ul>
@@ -76,14 +76,19 @@ export default {
       $on-laptop: 12,
     );
     font-size: $text-large;
-    h2 {
+    h3,
+    h4 {
+      @include font-size-scale (
+        $default: $title-medium,
+        $on-tablet: $title-large,
+        )
+    }
+    h3 {
       margin-bottom: $space-6;
-      font-size: $title-large;
       color: $shade-black;
     }
     h4 {
       margin-bottom: $space-4;
-      font-size: $title-large;
       color: $brand-base;
     }
     p {
