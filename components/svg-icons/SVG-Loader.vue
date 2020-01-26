@@ -9,6 +9,11 @@
 
 //Header
 import responsiveDesign from './page-header/responsive-design.vue'
+
+//Social
+import facebookIcon from './social/facebook-icon.vue'
+import linkdinIcon from './social/linkdin-icon.vue'
+import twitterIcon from './social/twitter-icon.vue'
   
 //Selling Points
 import editing from './selling-points/editing.vue'
@@ -27,8 +32,11 @@ import suit from './client-samples/suit.vue'
 import tools from './client-samples/tools.vue'
 import star from './client-samples/star.vue'
   
-//Misc
+//Utils
 import horizontalArrow from './utils/horizontal-arrow.vue'
+import thickMenuClose from './utils/thick-menu-close.vue'
+import menuButton from './utils/menu-button.vue'
+
   
 export default {
   
@@ -44,6 +52,10 @@ export default {
     
     //Header
     responsiveDesign,
+    //Social
+    facebookIcon,
+    twitterIcon,
+    linkdinIcon,
     //Selling Points
     editing,
     money,
@@ -58,9 +70,12 @@ export default {
     scissors,
     suit,
     tools,
-    //Misc
-    horizontalArrow,
     star,
+    //Utils
+    horizontalArrow,
+    thickMenuClose,
+    menuButton,
+    
   }
   
 }

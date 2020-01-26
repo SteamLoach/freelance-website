@@ -1,6 +1,7 @@
 <template>
 
   <section v-editable="content"
+           id="top"
            class="page-header"
            :class="content.theme">
     

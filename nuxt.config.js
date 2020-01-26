@@ -3,6 +3,10 @@ const env = require('dotenv').config()
 
 export default {
   mode: 'universal',
+  router: {
+    base: '/',
+    middleware: 'siteSettings',
+  },
   env: {
     CONTENT_VERSION: process.env.CONTENT_VERSION,
   },

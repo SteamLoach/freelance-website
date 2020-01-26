@@ -1,6 +1,7 @@
 <template>
 
   <section v-editable="content"
+           id="services"
            class="selling-point-loader">
     
     <h2> {{content.title}} </h2>

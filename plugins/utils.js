@@ -29,16 +29,16 @@ const setBackgroundImage = function(url) {
 }
 
 
-const scrollPage = function(obj = {target: '', axis: 'top', offset: false}) {
+const scrollPage = function(target, axis = 'top', offset = false) {
   
   let targetOffset = 0  
-  if (obj.offset) {
-    targetOffset = document.querySelector(obj.offset).clientHeight;
+  if (offset) {
+    targetOffset = document.getElementById(offset).clientHeight;
   }
   
   window.scrollTo({
     left: 0,
-    top: (document.querySelector(obj.target).getBoundingClientRect()[obj.axis] + pageYOffset) - targetOffset,
+    top: (document.getElementById(target).getBoundingClientRect()[axis] + pageYOffset) - targetOffset,
     behavior: 'smooth',
   });
 }

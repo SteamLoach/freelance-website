@@ -1,7 +1,8 @@
 <template>
 
   <section class="client-sample-loader"
-           v-editable="content">
+           v-editable="content"
+           id="clients">
   
     <h2> {{content.title}} </h2>
     
@@ -43,7 +44,7 @@ export default {
 <style lang="scss">
 
   .client-sample-loader {
-    @include row(center, center);
+    @include row(center, center, $direction: column);
     background: $brand-lightest;
   }
   
