@@ -30,7 +30,9 @@ import handheldNav from '~/components/navigation/handheld-nav';
   
 export default {
   
-  mixins: [stickyNav],
+  mixins: [
+    stickyNav
+  ],
   
   components: {
     primaryNav,
@@ -59,7 +61,7 @@ export default {
       .primary-nav {
         position: fixed;
           top: 0;
-        padding: $space-2;
+        padding: 0;
         @include shadow($elevation-light);
       }
 

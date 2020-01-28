@@ -1,14 +1,19 @@
 <template>
 
-  <nav class="handheld-nav">
+  <nav class="handheld-nav"
+       :class="state">
     
-    <div class="handheld-nav-close">
+    <div class="handheld-nav-close"
+         @click="handheldNavControl(false)">
       <SVG-Loader :icon="'thick-menu-close'"></SVG-Loader>
     </div>
     
     <ul class="handheld-nav-links">
       <li v-for="link in content.links">
-        <div @click="$scrollPage(link.target)"> {{link.text}} </div>
+        <div @click="$scrollPage(link.target, 'top', 'primary-nav'),
+                     handheldNavControl(false)">
+          <scroll-link :link="link"></scroll-link>
+        </div>
       </li>
     </ul>
     
@@ -28,9 +33,29 @@
 
 <script>
 
+import {mapMutations} from 'vuex';
+
+import scrollLink from './scroll-link.vue';  
+
 export default {
   
-  props: ['content']
+  props: ['content'],
+  
+  components: {
+    scrollLink,
+  },
+  
+  computed: {
+    state: function() {
+      return this.$store.state.handheldNav;
+    }
+  },
+  
+  methods: {
+    ...mapMutations({
+      handheldNavControl: 'handheldNavControl',
+    })
+  }
   
 }
 
@@ -44,18 +69,22 @@ export default {
     position: fixed;
     overflow-y: scroll;
       top: 0;
-      right: 0;
+      right: -100%;
     @include media-from($laptop, display, none);
     height: 100vh;
     @include column-scale(
       $default: 20,
       $on-tablet: 18,
     );
-    @include pad-scale(
-      y,
-      $default: $space-6,
-    );
-    background: $page-background; 
+    background: $page-background;
+    @include shadow(none);
+    @include transition();
+    
+    &.is-active {
+      right: 0;
+      @include shadow($elevation-medium);
+    }
+    
   }
   
   .handheld-nav-links {
@@ -63,12 +92,23 @@ export default {
     font-size: $text-large;
     font-weight: 600;
     text-align: right;
-    div {
-      padding: $space-3 $space-5;
+    
+    .scroll-link {
+      padding: 0 $space-2;
+      margin: $space-6 $space-3;
+      border-right: 3px solid transparent;
+      @include transition();
+      
+      &:hover, &.is-active {
+        color: $brand-base;
+        border-right-color: $brand-base;
+        cursor: pointer;
+      }
     }
   }
   
   .handheld-social-links {
+    margin: $space-6 0;
     li {
       text-align: right;
     }
@@ -76,6 +116,10 @@ export default {
       @include size($text-large);
       margin: $space-2 $space-5;
       fill: $shade-black;
+      @include transition();
+      &:hover {
+        fill: $brand-base;
+      }
     }
     .svg-icon-accent {
       fill: $page-background;
@@ -83,8 +127,9 @@ export default {
   }
   
   .handheld-nav-close {
+    padding: $space-5;
+    &:hover {cursor: pointer;}
     .svg-icon {
-      margin-right: $space-5;
       margin-left: auto;
       @include size(2rem);
     }

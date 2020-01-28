@@ -99,6 +99,7 @@ export default {
       color: $brand-darkest;
       border: 1px solid $brand-base;
       @include transition();
+      
       .svg-icon {
         position: relative;
           left: 0px;
@@ -107,10 +108,12 @@ export default {
         transform: rotate(180deg);
         @include transition();
       }
+      
       &:hover {
         color: $offset-text-color;
         background: $brand-base;
         cursor: pointer;
+        
         .svg-icon {
           fill: $offset-text-color;
           left: 5px;

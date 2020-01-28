@@ -1,7 +1,7 @@
 <template>
 
   <section v-editable="content"
-           id="top"
+           id="header"
            class="page-header"
            :class="content.theme">
     
@@ -133,17 +133,39 @@ export default {
       padding: $space-4 $space-6;
       @include margin-until($tablet, $bottom: $space-6);
       @include margin-from($tablet, $right: $space-6);
+      
+      color: $shade-lightest;
+      
       font-size: $text-body;
       font-weight: 700;
       border-radius: $border-radius;
       
+      background-position: left center;
+      background-size: 200%;
+      
+      @include transition();
+      
+      &:hover {
+       background-position: right center;
+      }
+      
       &.brand-base {
-        color: $brand-lightest;
-        background: $brand-base;
+        background-image: linear-gradient(
+          135deg,
+          $brand-base 0%,
+          $brand-darker 60%,
+          $brand-dark 80%,
+          $brand-darker 100%,
+        );
       }
       &.accent-base {
-        color: $accent-lightest;
-        background: $accent-base;
+        background-image: linear-gradient(
+          135deg,
+          $accent-base 0%,
+          $accent-darker 60%,
+          $accent-dark 80%,
+          $accent-darker 100%,
+        );
       }
     }
     

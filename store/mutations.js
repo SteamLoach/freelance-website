@@ -1,7 +1,14 @@
 export default {
   
-    setSettings (state, settings) {
-      state.settings = settings
+  //Site Settings
+  setSettings (state, settings) {
+    state.settings = settings
+  },
+  
+  //Handheld Nav
+  handheldNavControl (state, bool) {
+    state.handheldNav['is-active'] = bool;
+
   }
   
 }

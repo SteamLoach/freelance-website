@@ -7,7 +7,10 @@
     
     <ul class="nav-links">
       <li v-for="link in content.links">
-        <div @click="$scrollPage(link.target)"> {{link.text}} </div>
+        <div @click="$scrollPage(link.target, 'top', 'primary-nav')">
+          <scroll-link :link="link"
+                       :key="link._uid"></scroll-link>
+        </div>
       </li>
     </ul>
     
@@ -19,7 +22,8 @@
       </li>
     </ul>
     
-    <span class="handheld-nav-open">
+    <span class="handheld-nav-open"
+          @click="handheldNavControl(true)">
       <SVG-Loader :icon="'menu-button'"></SVG-Loader>
     </span>
   
@@ -30,9 +34,23 @@
 
 <script>
 
+import {mapMutations} from 'vuex';
+
+import scrollLink from './scroll-link.vue';
+  
 export default { 
   
   props: ['content'],
+  
+  components: {
+    scrollLink,
+  },
+  
+  methods: {
+    ...mapMutations({
+      handheldNavControl: 'handheldNavControl',
+    })
+  }
     
 }
 
@@ -44,20 +62,23 @@ export default {
   .primary-nav {
     z-index: 1000;
     @include row(between, center, $no-wrap: true);
-    padding: 0;
+    padding: $space-2;
     background: $page-background;
     @include transition();
+    
     h2 {
       padding: $space-2;
       @include pad-from($laptop, $xy: $space-4);
       font-size: $title-small;
       @include media-from($tablet, font-size, $title-medium);
       @include transition();
+      
       &:hover {
         cursor: pointer;
         color: $brand-base;
-      }
+      }  
     }
+    
   }
   
   .nav-links,
@@ -67,34 +88,74 @@ export default {
   }
   
   .nav-links {
-    div {
-      padding: $space-4 $space-6;
+    
+    .scroll-link {
+      position: relative;
+      padding: $space-2 $space-6;
       font-size: $text-body;
       font-weight: 600;
-      &:hover {
+      @include transition();
+      
+      &:after {
+        content: '';
+        position: absolute;
+        @include center-absolute();
+          bottom: 0;
+        @include size(0px, 4px);
+        border-radius: $border-radius;
+        background: transparent; 
+        @include transition();
+      }
+      
+      &:hover, &.is-active {
         cursor: pointer;
         color: $brand-base;
+        
+        &:after {
+          @include size(40px, 4px);
+          background: $brand-base
+        }
+        
       }
+      
+
     }
   }
   
   .social-links {
     padding: $space-4;
+    
     .svg-icon {
       @include size($text-large);
       margin: $space-2;
       fill: $shade-black;
+      @include transition();
+      
+      &:hover {
+        fill: $brand-base;
+      }
+      
     }
-    .svg-icon-accent {fill: $page-background;}
+    
+    .svg-icon-accent {
+      fill: $page-background;
+    }
+    
   }
   
   .handheld-nav-open {
     @include media-from($laptop, display, none);
-    padding: $space-2;
+    padding: $space-3;
+    
+    &:hover {
+      cursor: pointer;
+    }
+    
     .svg-icon {
       @include size(2rem);
       fill: $shade-black;
     }
+    
   }
 
 

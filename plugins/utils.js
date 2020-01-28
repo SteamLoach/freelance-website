@@ -29,6 +29,7 @@ const setBackgroundImage = function(url) {
 }
 
 
+
 const scrollPage = function(target, axis = 'top', offset = false) {
   
   let targetOffset = 0  
@@ -36,11 +37,16 @@ const scrollPage = function(target, axis = 'top', offset = false) {
     targetOffset = document.getElementById(offset).clientHeight;
   }
   
-  window.scrollTo({
-    left: 0,
-    top: (document.getElementById(target).getBoundingClientRect()[axis] + pageYOffset) - targetOffset,
-    behavior: 'smooth',
-  });
+  if (document.getElementById(target)) {
+    window.scrollTo({
+      left: 0,
+      top: (document.getElementById(target).getBoundingClientRect()[axis] + pageYOffset) - targetOffset,
+      behavior: 'smooth',
+    }); 
+  } else {
+    console.warn(`$scrollPage failed because there is no element with the id="${target}" attribute`)
+  }
+
 }
 
 const dateString = function(str) {
