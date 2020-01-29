@@ -2,6 +2,7 @@
 
   <div class="section-loader">
     <component v-for="section in sections"
+               class="section-wrapper"
                :is="section.component"
                :content="section"
                :key="section._uid"></component>
@@ -32,7 +33,43 @@ export default {
 
 
 <style lang="scss">
-
-
+  
+  .section-wrapper {
+    @include row(center, center, $direction: column);
+    @include y-pad($space-8);
+  }
+  
+  .section-pre-title {
+    font-size: $text-small;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: $brand-base;
+  }
+  
+  .section-title {
+    position: relative;
+    padding: $space-5 $space-2;
+    margin-bottom: $space-4;
+    @include font-size-scale(
+      $default: $title-medium, 
+      $on-tablet: $title-large,
+    );
+    &:after {
+      content: '';
+      @include size(75%, 5px);
+      @include center-absolute();
+        bottom: 0;
+      background: $brand-base;
+      border-radius: $border-radius;
+    }
+  }
+  
+  .section-intro {
+    padding: $space-4 $space-3;
+    font-size: $text-large;
+    max-width: $text-content-width;
+    text-align: justify;
+    @include media-from($tablet, text-align, center);
+  }
 
 </style>

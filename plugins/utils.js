@@ -44,7 +44,7 @@ const scrollPage = function(target, axis = 'top', offset = false) {
       behavior: 'smooth',
     }); 
   } else {
-    console.warn(`$scrollPage failed because there is no element with the id="${target}" attribute`)
+    console.warn(`$scrollPage(${target}) failed because there is no element with the id="${target}" attribute`)
   }
 
 }

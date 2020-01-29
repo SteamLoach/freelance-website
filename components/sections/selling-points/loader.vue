@@ -1,10 +1,14 @@
 <template>
 
   <section v-editable="content"
-           id="services"
+           :id="content.id"
            class="selling-point-loader">
     
-    <h2> {{content.title}} </h2>
+    <h4 class="section-pre-title"> {{content.pre_title}} </h4>
+    
+    <h2 class="section-title"> {{content.title}} </h2>
+    
+    <p class="section-intro"> {{content.intro}} </p>
     
     <selling-point v-for="item in content.selling_points"
                    :content="item"
@@ -39,6 +43,8 @@ export default {
 
 <style lang="scss">
 
+  .selling-point-loader {
 
+  }
 
 </style>

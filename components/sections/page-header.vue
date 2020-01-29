@@ -1,7 +1,7 @@
 <template>
 
   <section v-editable="content"
-           id="header"
+           :id="content.id"
            class="page-header"
            :class="content.theme">
     
@@ -15,7 +15,8 @@
         <div v-editable="content.cta"
              class="header-cta">
           <button v-for="button in content.cta"
-                  :class="button.color"> {{button.text}} </button>
+                  :class="button.color"
+                  @click="$scrollPage(button.target, 'top', 'primary-nav')"> {{button.text}} </button>
         </div>
       </div>
       
