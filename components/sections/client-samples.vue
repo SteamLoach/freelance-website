@@ -1,8 +1,6 @@
 <template>
 
-  <section class="client-sample-loader"
-           v-editable="content"
-           :id="content.id">
+  <section class="section-wrapper client-sample-loader">
     
     <h4 class="section-pre-title"> {{content.pre_title}} </h4>
     
@@ -10,7 +8,7 @@
     
     <p class="section-intro"> {{content.intro}} </p>
     
-    <div class="client-sample-inner">
+    <div class="section-inner client-sample-inner">
       
       <div v-for="item in content.client_samples"
            class="client-sample"
@@ -51,13 +49,11 @@ export default {
   .client-sample-inner {
     @include row(around, stretch);
     @include row-from($laptop, between, stretch);
-    @include content-panel-inner();
   }
   
   .client-sample {
     z-index: 1;
-    position: relative;
-    @include wrapper(between, center, $direction: column);
+    @include container(between, center, $direction: column);
     max-width: 325px;
     padding: $space-6;
     @include margin-scale(
@@ -71,6 +67,7 @@ export default {
       $on-laptop: 7
     );
     @include background-image();
+    @include shadow($elevation-heavy);
     
     &:before {
       z-index: -1;
@@ -79,14 +76,22 @@ export default {
         left: 0;
       content: '';
       @include size(100%);
-      background: $brand-base;
-      opacity: 0.7;
+      background-position: left center;
+      background-size: 300%;
+      background-image: linear-gradient(
+          135deg,
+          $brand-base 0%,
+          $brand-darker 60%,
+          $brand-dark 80%,
+          $brand-darker 100%,
+      );
+      opacity: 0.8;
       @include transition();
     }
     
     &:hover {
       &:before {
-        opacity: 0.9;
+        background-position: right center;
       }
     }
     

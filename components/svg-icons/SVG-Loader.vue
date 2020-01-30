@@ -32,6 +32,11 @@ import suit from './client-samples/suit.vue'
 import tools from './client-samples/tools.vue'
 import star from './client-samples/star.vue'
   
+//Pricing Tiers
+import fries from './pricing-tiers/fries.vue'
+import burger from './pricing-tiers/burger.vue'
+import fullMonty from './pricing-tiers/full-monty.vue'
+  
 //Utils
 import horizontalArrow from './utils/horizontal-arrow.vue'
 import thickMenuClose from './utils/thick-menu-close.vue'
@@ -71,6 +76,10 @@ export default {
     suit,
     tools,
     star,
+    //Pricing
+    fries,
+    burger,
+    fullMonty,
     //Utils
     horizontalArrow,
     thickMenuClose,

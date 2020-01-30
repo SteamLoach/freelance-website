@@ -1,8 +1,6 @@
 <template>
 
-  <section v-editable="content"
-           :id="content.id"
-           class="page-header"
+  <section class="page-header"
            :class="content.theme">
     
     <div class="page-header-inner">

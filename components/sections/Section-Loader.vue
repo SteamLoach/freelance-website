@@ -2,10 +2,11 @@
 
   <div class="section-loader">
     <component v-for="section in sections"
-               class="section-wrapper"
                :is="section.component"
                :content="section"
-               :key="section._uid"></component>
+               :key="section._uid"
+               :id="section.id"
+               v-editable="section"></component>
   </div>
              
 </template>
@@ -16,6 +17,7 @@
 import pageHeader from '~/components/sections/page-header.vue';
 import sellingPoints from '~/components/sections/selling-points/loader.vue';
 import clientSamples from '~/components/sections/client-samples.vue';
+import pricingTiers from '~/components/sections/pricing-tiers.vue';
   
 export default {
   
@@ -25,6 +27,7 @@ export default {
     pageHeader,
     sellingPoints,
     clientSamples,
+    pricingTiers,
   }
   
 }
@@ -37,6 +40,22 @@ export default {
   .section-wrapper {
     @include row(center, center, $direction: column);
     @include y-pad($space-8);
+  }
+  
+  .section-inner {
+    max-width: $wide-content-width;
+    @include pad-scale(
+      x,
+      $default: $space-3,
+      $on-tablet: $space-4,
+      $on-laptop: $space-6,
+      $on-desktop: $space-8,
+    );
+    @include pad-scale(
+      y,
+      $default: $space-6,
+      $on-tablet: $space-8,
+    );
   }
   
   .section-pre-title {

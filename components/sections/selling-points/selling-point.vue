@@ -3,7 +3,7 @@
   <article v-editable="content"
            class="selling-point">
   
-    <div class="selling-point-inner"
+    <div class="section-inner selling-point-inner"
          :class="{'is-reversed': (order%2 == 0) ? true : false}">
       
       <div class="selling-point-content">
@@ -63,7 +63,6 @@ export default {
   
   .selling-point-inner {
     @include row(between, center);
-    @include content-panel-inner();
     &.is-reversed {
       flex-direction: row-reverse;
     }

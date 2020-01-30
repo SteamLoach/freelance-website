@@ -1,8 +1,6 @@
 <template>
 
-  <section v-editable="content"
-           :id="content.id"
-           class="selling-point-loader">
+  <section class="section-wrapper selling-point-loader">
     
     <h4 class="section-pre-title"> {{content.pre_title}} </h4>
     
