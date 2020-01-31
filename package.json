@@ -16,6 +16,7 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "culverin-scss": "^1.1.0",
     "nuxt": "^2.0.0",
+    "steamloach-scss": "^0.1.0",
     "storyblok-nuxt": "^1.0.2"
   },
   "devDependencies": {

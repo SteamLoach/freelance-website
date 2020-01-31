@@ -35,8 +35,7 @@ export default {
   ** Global CSS
   */
   css: [
-      //'culverin-scss/css-base/base.css',
-    '../steamloach-scss/css-base/base.css',
+    'steamloach-scss/css-base/base.css',
   ],
   /*
   ** Plugins to load before mounting the App

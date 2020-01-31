@@ -42,7 +42,7 @@ export default {
 <style lang="scss">
 
   .selling-point-loader {
-
+    //background: $accent-lightest;
   }
 
 </style>
