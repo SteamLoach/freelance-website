@@ -2,7 +2,10 @@ export const stickyNav = {
   
   mounted() {
     
-    this.nav = document.querySelector('#primary-nav')
+    this.nav = document.querySelector('#primary-nav');
+    
+    this.fixNav();
+    
     window.addEventListener('scroll', this.fixNav);
     
   },

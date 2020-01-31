@@ -3,7 +3,7 @@
   <div v-editable="content"
        class="check-point">
     <SVG-Loader :icon="'check-mark'"></SVG-Loader>
-    <span v-html="richText"></span>
+    <rich-text :content="content.text"></rich-text>
   </div>
 
 </template>
@@ -13,12 +13,6 @@
 export default {
   
   props: ['content'],
-  
-  computed: {
-    richText: function() {
-      return this.$storyapi.richTextResolver.render(this.content.text);
-    }
-  }
   
 }
 

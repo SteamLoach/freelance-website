@@ -7,8 +7,8 @@
       
       <div class="header-content">
         
-        <div class="header-text"
-             v-html="headerText"></div>
+        <rich-text class="header-text"
+                   :content="content.title"></rich-text>
 
         <div v-editable="content.cta"
              class="header-cta">
@@ -34,13 +34,7 @@
 export default {
   
   props: ['content'],
-  
-  computed: {
-    headerText() {
-      return this.$storyapi.richTextResolver.render(this.content.title);
-    }
-  }
-  
+    
 }
 
 </script>

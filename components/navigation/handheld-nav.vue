@@ -35,15 +35,9 @@
 
 import {mapMutations} from 'vuex';
 
-import scrollLink from './scroll-link.vue';  
-
 export default {
   
   props: ['content'],
-  
-  components: {
-    scrollLink,
-  },
   
   computed: {
     state: function() {
