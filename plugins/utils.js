@@ -28,8 +28,7 @@ const setBackgroundImage = function(url) {
   return {backgroundImage: `url('${url}')` } ; 
 }
 
-
-
+//Scrolls the page to defined target
 const scrollPage = function(target, axis = 'top', offset = false) {
   
   let targetOffset = 0  
@@ -49,15 +48,33 @@ const scrollPage = function(target, axis = 'top', offset = false) {
 
 }
 
+
+//Returns a more human readabable date string
 const dateString = function(str) {
   return new Date(str).toDateString();
 }
+
+
+//Concise debounce function
+const debounce = function(fn, delay) {
+  var timeoutID = null
+  return function () {
+    clearTimeout(timeoutID)
+    var args = arguments
+    var that = this
+    timeoutID = setTimeout(function () {
+      fn.apply(that, args)
+    }, delay)
+  }
+}
+
 
 
 //Component Only
 Vue.prototype.$setBackgroundImage = setBackgroundImage;
 Vue.prototype.$dateString = dateString;
 Vue.prototype.$scrollPage = scrollPage;
+Vue.prototype.$debounce = debounce;
 
 //Context Injection
 export default ({app}, inject) => {

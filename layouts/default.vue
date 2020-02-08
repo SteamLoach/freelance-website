@@ -1,29 +1,29 @@
 <template>
-  <div>
-    <main class="site-wrapper"
-          id="main"
-          :class="{'fix-primary-nav': navIsFixed}"
-          :style="padSiteWrapper">
+
+  <div class="site-wrapper">
+    
       
       <primary-nav v-for="nav in settings.primary_nav"
                    :content="nav"
-                   :key="`${nav._uid}primary`">
+                   :key="`${nav._uid}primary`"
+                   :activeSection="mxn_onePageNav.activeSection">
       </primary-nav>
       
       <handheld-nav v-for="nav in settings.primary_nav"
                     :content="nav"
-                    :key="`${nav._uid}handheld`">
+                    :key="`${nav._uid}handheld`"
+                    :activeSection="mxn_onePageNav.activeSection">
       </handheld-nav>
       
       <nuxt />
     
-  </main>
   </div>
+
 </template>
 
 <script>
 
-import {stickyNav} from '~/mixins/stickyNav';
+import {onePageNav} from '~/mixins/onePageNav';
   
 import primaryNav from '~/components/navigation/primary-nav';
 import handheldNav from '~/components/navigation/handheld-nav';
@@ -31,7 +31,7 @@ import handheldNav from '~/components/navigation/handheld-nav';
 export default {
   
   mixins: [
-    stickyNav
+    onePageNav
   ],
   
   components: {
@@ -39,11 +39,18 @@ export default {
     handheldNav,
   },
   
-  computed: {
-    settings: function() {
-      return this.$store.state.settings;
+  data() {
+    return {
+      
+      settings: this.$store.state.settings,
+      
+      mxn_onePageNav: {
+        watchSections: this.$store.state.settings.primary_nav[0].links,
+        activeSection: '',
+        navOffset: 'primary-nav',
+      }
     }
-  }
+  },
   
 }
 
@@ -57,15 +64,11 @@ export default {
   }
   
   .site-wrapper {
-    &.fix-primary-nav {
-      .primary-nav {
-        position: fixed;
-          top: 0;
-        padding: 0;
-        @include shadow($elevation-light);
-      }
-
-    }
+    @include pad-scale(
+      top,
+      $default: $space-10,
+      $on-laptop: $space-8,
+    );
   }
-  
+    
 </style>

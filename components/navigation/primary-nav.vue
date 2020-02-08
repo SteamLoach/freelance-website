@@ -5,22 +5,10 @@
   
     <h2 @click="$scrollPage('main')"> {{content.title}} </h2>
     
-    <ul class="nav-links">
-      <li v-for="link in content.links">
-        <div @click="$scrollPage(link.target, 'top', 'primary-nav')">
-          <scroll-link :link="link"
-                       :key="link._uid"></scroll-link>
-        </div>
-      </li>
-    </ul>
+    <nav-links :links="content.links"
+               :activeSection="activeSection"></nav-links>
     
-    <ul class="social-links">
-      <li v-for="icon in content.social_icons">
-        <a :href="icon.route">
-          <SVG-Loader :icon="icon.text_or_icon"></SVG-Loader>
-        </a>
-      </li>
-    </ul>
+    <social-links :links="content.social_icons"></social-links>
     
     <span class="handheld-nav-open"
           @click="handheldNavControl(true)">
@@ -36,9 +24,17 @@
 
 import {mapMutations} from 'vuex';
   
+import navLinks from './common/nav-links.vue';
+import socialLinks from './common/social-links.vue';
+  
 export default { 
   
-  props: ['content'],
+  props: ['content', 'activeSection'],
+  
+  components: {
+    navLinks,
+    socialLinks,
+  },
   
   methods: {
     ...mapMutations({
@@ -54,11 +50,15 @@ export default {
 <style lang="scss">
 
   .primary-nav {
-    z-index: 1000;
     @include row(between, center, $no-wrap: true);
+    position: fixed;
+      top: 0;
+    z-index: 1000;
     padding: $space-2;
     background: $page-background;
+    @include shadow($elevation-lighter);
     @include transition();
+    
     
     h2 {
       padding: $space-2;
@@ -73,69 +73,68 @@ export default {
       }  
     }
     
-  }
+    .nav-links,
+    .social-links {
+      @include media-until($laptop, display, none);
+      @include wrapper(around, center, $no-wrap: true);
+    }
   
-  .nav-links,
-  .social-links {
-    @include media-until($laptop, display, none);
-    @include wrapper(around, center, $no-wrap: true);
-  }
-  
-  .nav-links {
+    .nav-links {
     
-    .scroll-link {
-      position: relative;
-      padding: $space-2 $space-6;
-      font-size: $text-body;
-      font-weight: 600;
-      @include transition();
-      
-      &:after {
-        content: '';
-        position: absolute;
-        @include center-absolute();
-          bottom: 0;
-        @include size(0px, 4px);
-        border-radius: $border-radius;
-        background: transparent; 
+      li {
+        position: relative;
+        padding: $space-2 $space-6;
+        font-size: $text-body;
+        font-weight: 600;
         @include transition();
-      }
       
-      &:hover, &.is-active {
-        cursor: pointer;
-        color: $brand-base;
-        
         &:after {
-          @include size(40px, 4px);
-          background: $brand-base
+          content: '';
+          position: absolute;
+          @include center-absolute();
+            bottom: 0;
+          @include size(0px, 4px);
+          border-radius: $border-radius;
+          background: transparent; 
+          @include transition();
         }
-        
-      }
       
+        &:hover, &.is-active {
+          cursor: pointer;
+          color: $brand-base;
+
+          &:after {
+            @include size(40px, 4px);
+            background: $brand-base
+          }
+
+        }
+      }
+    }
+  
+    .social-links {
+      padding: $space-4;
+
+      .svg-icon {
+        @include size($text-large);
+        margin: $space-2;
+        fill: $shade-black;
+        @include transition();
+
+        &:hover {
+          fill: $brand-base;
+        }
+
+      }
+
+      .svg-icon-accent {
+        fill: $page-background;
+      }
 
     }
+     
   }
-  
-  .social-links {
-    padding: $space-4;
-    
-    .svg-icon {
-      @include size($text-large);
-      margin: $space-2;
-      fill: $shade-black;
-      @include transition();
-      
-      &:hover {
-        fill: $brand-base;
-      }
-      
-    }
-    
-    .svg-icon-accent {
-      fill: $page-background;
-    }
-    
-  }
+
   
   .handheld-nav-open {
     @include media-from($laptop, display, none);

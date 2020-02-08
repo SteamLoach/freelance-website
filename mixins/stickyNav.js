@@ -6,7 +6,7 @@ export const stickyNav = {
     
     this.fixNav();
     
-    window.addEventListener('scroll', this.fixNav);
+    window.addEventListener('scroll', this.$debounce(this.fixNav, 150));
     
   },
   

@@ -42,7 +42,6 @@ export default {
   */
   plugins: [
     '~/plugins/utils.js',
-    '~/plugins/particleVisual.js',
     '~/plugins/components.js',
   ],
   /*

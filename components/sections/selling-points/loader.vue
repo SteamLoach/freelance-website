@@ -14,7 +14,8 @@
                    :key="item._uid"
                    :order="content.selling_points.indexOf(item) + 1">
     </selling-point>
-  
+    
+
   </section>
 
 </template>
@@ -31,7 +32,7 @@ export default {
   
   components: {
     sellingPoint,
-  }
+  },
   
 }
 

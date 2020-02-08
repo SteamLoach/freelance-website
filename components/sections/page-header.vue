@@ -22,8 +22,8 @@
         <SVG-Loader :icon="'responsive-design'"></SVG-Loader>
       </div>
       
-    </div>
-    
+    </div> 
+  
   </section>
 
 </template>

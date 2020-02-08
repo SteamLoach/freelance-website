@@ -8,24 +8,11 @@
       <SVG-Loader :icon="'thick-menu-close'"></SVG-Loader>
     </div>
     
-    <ul class="handheld-nav-links">
-      <li v-for="link in content.links">
-        <div @click="$scrollPage(link.target, 'top', 'primary-nav'),
-                     handheldNavControl(false)">
-          <scroll-link :link="link"></scroll-link>
-        </div>
-      </li>
-    </ul>
+    <nav-links :links="content.links"
+               :activeSection="activeSection"></nav-links>
     
-    <ul class="handheld-social-links">
-      <li v-for="icon in content.social_icons">
-        <a :href="icon.route">
-          <SVG-Loader :icon="icon.text_or_icon"></SVG-Loader>
-        </a>
-      </li>
-    </ul>
+    <social-links :links="content.social_icons"></social-links>
     
-  
   </nav>
 
 </template>
@@ -34,10 +21,18 @@
 <script>
 
 import {mapMutations} from 'vuex';
+  
+import navLinks from './common/nav-links.vue';
+import socialLinks from './common/social-links.vue';
 
 export default {
   
-  props: ['content'],
+  props: ['content', 'activeSection'],
+  
+  components: {
+    navLinks,
+    socialLinks,
+  },
   
   computed: {
     state: function() {
@@ -78,48 +73,47 @@ export default {
       right: 0;
       @include shadow($elevation-medium);
     }
-    
-  }
   
-  .handheld-nav-links {
-    margin: $space-6 0;
-    font-size: $text-large;
-    font-weight: 600;
-    text-align: right;
-    
-    .scroll-link {
-      padding: 0 $space-2;
-      margin: $space-6 $space-3;
-      border-right: 3px solid transparent;
-      @include transition();
-      
-      &:hover, &.is-active {
-        color: $brand-base;
-        border-right-color: $brand-base;
-        cursor: pointer;
-      }
-    }
-  }
-  
-  .handheld-social-links {
-    margin: $space-6 0;
-    li {
+    .nav-links {
+      margin: $space-6 0;
+      font-size: $text-large;
+      font-weight: 600;
       text-align: right;
-    }
-    .svg-icon {
-      @include size($text-large);
-      margin: $space-2 $space-5;
-      fill: $shade-black;
-      @include transition();
-      &:hover {
-        fill: $brand-base;
+
+      li {
+        padding: 0 $space-2;
+        margin: $space-6 $space-3;
+        border-right: 3px solid transparent;
+        @include transition();
+
+        &:hover, &.is-active {
+          color: $brand-base;
+          border-right-color: $brand-base;
+          cursor: pointer;
+        }
       }
     }
-    .svg-icon-accent {
-      fill: $page-background;
+  
+    .social-links {
+      margin: $space-6 0;
+      li {
+        text-align: right;
+      }
+      .svg-icon {
+        @include size($text-large);
+        margin: $space-2 $space-5;
+        fill: $shade-black;
+        @include transition();
+        &:hover {
+          fill: $brand-base;
+        }
+      }
+      .svg-icon-accent {
+        fill: $page-background;
+      }
     }
   }
-  
+    
   .handheld-nav-close {
     padding: $space-5;
     &:hover {cursor: pointer;}
