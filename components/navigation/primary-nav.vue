@@ -3,7 +3,7 @@
   <nav class="primary-nav"
        id="primary-nav">
   
-    <h2 @click="$scrollPage('main')"> {{content.title}} </h2>
+    <h2 @click="$scrollPage('header')"> {{content.title}} </h2>
     
     <nav-links :links="content.links"
                :activeSection="activeSection"></nav-links>
@@ -54,9 +54,8 @@ export default {
     position: fixed;
       top: 0;
     z-index: 1000;
-    padding: $space-2;
+    padding: $space-1;
     background: $page-background;
-    @include shadow($elevation-lighter);
     @include transition();
     
     

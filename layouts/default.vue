@@ -1,7 +1,7 @@
 <template>
 
-  <div class="site-wrapper">
-    
+  <div class="site-wrapper"
+       :class="{'nav-is-fixed': navIsFixed}">
       
       <primary-nav v-for="nav in settings.primary_nav"
                    :content="nav"
@@ -23,6 +23,7 @@
 
 <script>
 
+import {stickyNav} from '~/mixins/stickyNav';
 import {onePageNav} from '~/mixins/onePageNav';
   
 import primaryNav from '~/components/navigation/primary-nav';
@@ -31,7 +32,8 @@ import handheldNav from '~/components/navigation/handheld-nav';
 export default {
   
   mixins: [
-    onePageNav
+    onePageNav,
+    stickyNav
   ],
   
   components: {
@@ -63,12 +65,14 @@ export default {
       width: 100%;
   }
   
-  .site-wrapper {
-    @include pad-scale(
-      top,
-      $default: $space-10,
-      $on-laptop: $space-8,
-    );
+  .site-wrapper {    
+    &.nav-is-fixed {
+      .primary-nav {
+        padding: $space-2;
+        @include shadow($elevation-light);
+      }
+    }
+    
   }
     
 </style>

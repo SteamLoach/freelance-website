@@ -1,18 +1,17 @@
 <template>
 
-  <section class="page-header"
-           :class="content.theme">
+  <section class="page-header">
     
     <div class="page-header-inner">
       
       <div class="header-content">
         
         <rich-text class="header-text"
-                   :content="content.title"></rich-text>
+                   :content="section.title"></rich-text>
 
-        <div v-editable="content.cta"
+        <div v-editable="section.cta"
              class="header-cta">
-          <button v-for="button in content.cta"
+          <button v-for="button in section.cta"
                   :class="button.color"
                   @click="$scrollPage(button.target, 'top', 'primary-nav')"> {{button.text}} </button>
         </div>
@@ -33,7 +32,7 @@
   
 export default {
   
-  props: ['content'],
+  props: ['section'],
     
 }
 
@@ -45,6 +44,11 @@ export default {
   .page-header {
     min-height: 100vh;
     @include row(center, center);
+    @include pad-scale(
+      top,
+      $default: $space-10,
+      $on-laptop: $space-8,
+    );
   }
   
   .page-header-inner {
