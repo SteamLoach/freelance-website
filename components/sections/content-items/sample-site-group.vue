@@ -1,6 +1,6 @@
 <template>
 
-  <div class="section-inner sample-site-inner">
+  <div class="section-inner sample-site-group">
   
     <div v-for="item in content.items"
          class="sample-site"
@@ -39,7 +39,7 @@ export default {
     background: $shade-lightest;
   }
   
-  .sample-site-inner {
+  .sample-site-group {
     @include row(around, stretch);
     @include row-from($laptop, between, stretch);
   }

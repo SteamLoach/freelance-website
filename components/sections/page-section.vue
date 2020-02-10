@@ -3,14 +3,19 @@
   <section class="page-section"
            :class="section.classes">
   
-    <h4 class="section-pre-title"> {{section.pre_title}} </h4>
+    <h4 class="section-pre-title"
+        v-if="section.pre_title"> {{section.pre_title}} </h4>
     
-    <h2 class="section-title"> {{section.title}} </h2>
+    <h2 class="section-title"
+        v-if="section.title"> {{section.title}} </h2>
   
-    <p class="section-intro"> {{section.intro}} </p>
+    <p class="section-intro"
+       v-if="section.intro"> {{section.intro}} </p>
     
-    <component :is="section.content_group[0].component"
-               :content="section.content_group[0]">
+    <component v-for="group in section.content_group"
+               :is="group.component"
+               :content="group"
+               :key="section._uid">
     </component>
   
   </section>
@@ -20,9 +25,10 @@
 
 <script>
 
-import sellingPointGroup from '~/components/sections/content-groups/selling-point-group.vue';
-import sampleSiteGroup from '~/components/sections/content-groups/sample-site-group.vue';
-import pricingGroup from '~/components/sections/content-groups/pricing-group.vue';
+import sellingPointGroup from './content-items/selling-point-group.vue';
+import sampleSiteGroup from './content-items/sample-site-group.vue';
+import pricingGroup from './content-items/pricing-group.vue';
+import faqGroup from './content-items/faqs/faq-group.vue';
   
 export default {
 
@@ -32,6 +38,7 @@ export default {
     sellingPointGroup,
     sampleSiteGroup,
     pricingGroup,
+    faqGroup,
   }
   
 }
@@ -72,10 +79,12 @@ export default {
     position: relative;
     padding: $space-5 $space-2;
     margin-bottom: $space-4;
+    text-align: center;
     @include font-size-scale(
       $default: $title-medium, 
       $on-tablet: $title-large,
     );
+    line-height: 1.2;
     &:after {
       content: '';
       @include size(75%, 5px);

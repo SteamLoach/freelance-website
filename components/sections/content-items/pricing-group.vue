@@ -1,6 +1,6 @@
 <template>
 
-  <div class="section-inner pricing-inner">
+  <div class="section-inner pricing-group">
   
     <div class="pricing-tier"
          v-for="item in content.items"
@@ -48,7 +48,7 @@ export default {
     background: $brand-lightest;
   }
   
-  .pricing-inner {
+  .pricing-group {
     @include row(center, center);
     @include row-from($tablet, around, stretch);
     @include row-from($laptop, between, stretch);
