@@ -29,6 +29,7 @@ import sellingPointGroup from './content-items/selling-point-group.vue';
 import sampleSiteGroup from './content-items/sample-site-group.vue';
 import pricingGroup from './content-items/pricing-group.vue';
 import faqGroup from './content-items/faqs/faq-group.vue';
+import netlifyForm from './content-items/netlify-form.vue';
   
 export default {
 
@@ -39,6 +40,7 @@ export default {
     sampleSiteGroup,
     pricingGroup,
     faqGroup,
+    netlifyForm,
   }
   
 }

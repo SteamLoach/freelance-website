@@ -41,6 +41,7 @@ import fullMonty from './pricing-tiers/full-monty.vue'
 import horizontalArrow from './utils/horizontal-arrow.vue'
 import thickMenuClose from './utils/thick-menu-close.vue'
 import menuButton from './utils/menu-button.vue'
+import downArrow from './utils/down-arrow.vue'
 
   
 export default {
@@ -84,6 +85,7 @@ export default {
     horizontalArrow,
     thickMenuClose,
     menuButton,
+    downArrow,
     
   }
   

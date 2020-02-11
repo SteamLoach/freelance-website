@@ -82,7 +82,7 @@ export default {
     
       li {
         position: relative;
-        padding: $space-2 $space-6;
+        padding: $space-2 $space-5;
         font-size: $text-body;
         font-weight: 600;
         @include transition();
